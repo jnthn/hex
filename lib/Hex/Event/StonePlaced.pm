@@ -1,6 +1,6 @@
 use Hex::Event;
 
-package Hex::Events::StonePlacedEvent;
+package Hex::Event::StonePlaced;
 use Moose;
 extends 'Hex::Event';
 

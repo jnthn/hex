@@ -1,6 +1,6 @@
 use Hex::Event;
 
-package Hex::Events::GameStartedEvent;
+package Hex::Event::GameStarted;
 use Moose;
 extends 'Hex::Event';
 

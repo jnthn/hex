@@ -1,6 +1,6 @@
 use Hex::Command;
 
-package Hex::Commands::PlaceStoneCommand;
+package Hex::Command::PlaceStone;
 use Moose;
 extends 'Hex::Command';
 
