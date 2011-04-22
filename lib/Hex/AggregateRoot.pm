@@ -24,7 +24,7 @@ sub apply_event {
 
     my $handler = $self->lookup()->{ref $event}
         or return; # original code fails here...
-    $handler->();
+    $handler->($self);
 
     $add //= 1;
     if ($add) {
