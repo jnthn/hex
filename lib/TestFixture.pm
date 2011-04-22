@@ -1,5 +1,6 @@
 package TestFixture;
 use Test::More;
+use TestRepository;
 
 use Moose;
 
@@ -23,6 +24,12 @@ sub run {
         @events = $root->get_changes();
     };
     is_deeply(\@events, $self->then());
+}
+
+my $repository = TestRepository->new();
+sub repository {
+    my ($self) = @_;
+    return $repository;
 }
 
 no Moose;
