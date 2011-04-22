@@ -15,6 +15,7 @@ has 'version' => (
 has 'changes' => (
     is => 'rw',
     isa => 'ArrayRef[Event]',
+    default => sub { [] },
     reader => 'get_uncommitted_changes',
 );
 

@@ -11,10 +11,15 @@ sub lookup {
 
     return {
         'Hex::Event::GameStarted' => \&apply_game_started,
+        'Hex::Event::StonePlaced' => \&apply_stone_placed,
     };
 }
 
 sub apply_game_started {
+    my ($self) = @_;
+}
+
+sub apply_stone_placed {
     my ($self) = @_;
 }
 
