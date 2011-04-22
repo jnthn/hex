@@ -67,7 +67,7 @@
     </xs:complexType>
   </xs:element>
   
-  <xs:element name="ResignCommand">
+  <xs:element name="ResignGameCommand">
     <xs:complexType>
       <xs:all>
         <xs:element name="GameID" type="xs:int" />
@@ -79,7 +79,7 @@
     <xs:complexType>
       <xs:all>
         <xs:element name="GameID" type="xs:int" />
-        <xs:element name="TimingOutPlayerHandle" type="xs:int" />
+        <xs:element name="TimingOutPlayerHandle" type="xs:string" />
       </xs:all>
     </xs:complexType>
   </xs:element>
