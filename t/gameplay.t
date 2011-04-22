@@ -1,4 +1,4 @@
-use Test::More tests => 4;
+use Test::More tests => 5;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
@@ -79,4 +79,26 @@ TestFixture->new(
         Cell => 'X1'
     ),
     then => "Piece outside of board"
+)->run();
+
+TestFixture->new(
+    root => Hex::AggregateRoot::Game->new(),
+    given => [Hex::Event::GameStarted->new(
+        GameID => 42,
+        FirstPlayerHandle => 'jnthn',
+        SecondPlayerHandle => 'masak',
+        Size => '5',
+        PlayerTimeLimit => 'P1h'
+    ),
+    Hex::Event::StonePlaced->new(
+        GameID => 42,
+        PlayerHandle => 'jnthn',
+        Cell => 'A1',
+    )],
+    when => Hex::Command::PlaceStone->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+        Cell => 'A1'
+    ),
+    then => "Cell is already occupied"
 )->run();
