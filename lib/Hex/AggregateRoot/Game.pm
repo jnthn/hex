@@ -24,9 +24,11 @@ sub apply_stone_placed {
 }
 
 sub place_stone {
-    my ($self) = @_;
+    my ($self, $cell) = @_;
 
-    $self->apply_event(Hex::Event::StonePlaced->new());
+    $self->apply_event(Hex::Event::StonePlaced->new(
+        Cell => $cell,
+    ));
 }
 
 1;
