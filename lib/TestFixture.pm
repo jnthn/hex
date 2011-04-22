@@ -9,7 +9,7 @@ has 'root' => (
 
 has 'given' => (
     is => 'ro',
-    isa => 'Array[Event]',
+    isa => 'ArrayRef[Event]',
 );
 
 has 'when' => (
@@ -19,7 +19,7 @@ has 'when' => (
 
 has 'then' => (
     is => 'ro',
-    isa => 'Array[Event]|Exception',
+    isa => 'ArrayRef[Event]|Exception',
 );
 
 sub run {
