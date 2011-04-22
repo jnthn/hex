@@ -60,18 +60,27 @@ sub apply_game_started {
 
 sub apply_stone_placed {
     my ($self, $event) = @_;
-    
+
     my $board = $self->board();
     $event->Cell =~ /^([A-Z])(\d+)$/;
     $board->[ord($1) - ord('A')]->[$2 - 1] = $self->player_on_turn();
     
+    $self->go_to_next_player();
+}
+
+sub apply_swap_player_colors {
+    my ($self, $event) = @_;
+
+    $self->go_to_next_player();
+}
+
+sub go_to_next_player {
+    my ($self) = @_;
+
     $self->player_on_turn(
         $self->player_on_turn() eq $self->player_black() ?
             $self->player_white() :
             $self->player_black());
-}
-
-sub apply_swap_player_colors {
 }
 
 sub place_stone {
