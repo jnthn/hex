@@ -20,6 +20,12 @@ sub setup {
         'Hex::Command::PlaceStone' => sub { $ch->handle_place_stone($_[0]) }
     );
 
+    Hex::EventAggregator->subscribe(
+        'Hex::Command::SwapPlayerColors' => sub {
+            $ch->handle_swap_player_colors($_[0])
+        }
+    );
+
     return;
 }
 
@@ -38,6 +44,12 @@ sub handle_place_stone {
     
     $game->place_stone($command->PlayerHandle, $command->Cell);
     $self->repository->save($game);
+}
+
+sub handle_swap_player_colors {
+    my ($self, $command) = @_;
+
+    die "Can only swap player colors immediately after the first move";
 }
 
 sub piece_is_within_board {
