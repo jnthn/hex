@@ -1,1 +1,4 @@
-package Hex::Command;use Moose;"beer!";
+package Hex::Command;
+use Moose;
+
+"beer!";
