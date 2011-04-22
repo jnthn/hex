@@ -5,6 +5,7 @@ use Hex::Command::PlaceStone;
 use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
 use Hex::AggregateRoot::Game;
+use Hex::CommandHandlers::Game;
 
 TestFixture->new(
     root => Hex::AggregateRoot::Game->new(),
