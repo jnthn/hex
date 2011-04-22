@@ -4,6 +4,8 @@ use Moose;
 
 extends 'Hex::AggregateRoot';
 
+use Hex::Event::StonePlaced;
+
 sub lookup {
     my ($self) = @_;
 
@@ -14,6 +16,12 @@ sub lookup {
 
 sub apply_game_started {
     my ($self) = @_;
+}
+
+sub place_stone {
+    my ($self) = @_;
+
+    $self->apply_event(Hex::Event::StonePlaced->new());
 }
 
 1;
