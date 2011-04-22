@@ -6,6 +6,7 @@ use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
 
 TestFixture->new(
+    root => Hex::AggregateRoots::Game->new(),
     given => [Hex::Event::GameStarted->new(
         FirstPlayerHandle => 'jnthn',
         SecondPlayerHandle => 'masak',
