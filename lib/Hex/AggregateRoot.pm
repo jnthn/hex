@@ -30,7 +30,7 @@ sub apply_event {
 
     my $handler = $self->lookup()->{ref $event}
         or die("Cannot find handler for " . ref($event));
-    $handler->($self);
+    $handler->($self, $event);
 
     $add //= 1;
     if ($add) {
