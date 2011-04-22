@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="RegisterPlayerCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Handle" type="xs:string" />
+        <xs:element name="Email" type="xs:string" />
+        <xs:element name="Password" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ActivatePlayerCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ActivationHandle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="InvitePlayerCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="InviteeHandle" type="xs:string" />
+        <xs:element name="Size" type="xs:int" />
+        <xs:element name="PlayerTimeLimit" type="xs:duration" />
+        <xs:element name="InviterGoesFirst" type="xs:boolean" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="AcceptInvitationCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="InvitationID" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RejectInvitationCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="InvitationID" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PlaceStoneCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="Cell" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SwapPlayerColorsCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="ResignCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TimeOutGameCommand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="TimingOutPlayerHandle" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

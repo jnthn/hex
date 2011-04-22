@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="PlayerRegisteredEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Handle" type="xs:string" />
+        <xs:element name="Email" type="xs:string" />
+        <xs:element name="Password" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PlayerActivatedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Handle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PlayerInvitedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="InvitationID" type="xs:int" />
+        <xs:element name="InviterHandle" type="xs:string" />
+        <xs:element name="InviteeHandle" type="xs:string" />
+        <xs:element name="Size" type="xs:int" />
+        <xs:element name="PlayerTimeLimit" type="xs:duration" />
+        <xs:element name="InviterGoesFirst" type="xs:boolean" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GameStartedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="FirstPlayerHandle" type="xs:string" />
+        <xs:element name="SecondPlayerHandle" type="xs:string" />
+        <xs:element name="Size" type="xs:int" />
+        <xs:element name="PlayerTimeLimit" type="xs:duration" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InvitationRejectedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="InvitationID" type="xs:int" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StonePlacedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="PlayerHandle" type="xs:string" />
+        <xs:element name="Cell" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PlayerColorsSwappedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="PlayerHandle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GameResignedEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="WinnerPlayerHandle" type="xs:string" />
+        <xs:element name="LoserPlayerHandle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="GameWonEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="WinnerPlayerHandle" type="xs:string" />
+        <xs:element name="LoserPlayerHandle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GameTimedOutEvent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GameID" type="xs:int" />
+        <xs:element name="WinnerPlayerHandle" type="xs:string" />
+        <xs:element name="LoserPlayerHandle" type="xs:string" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
