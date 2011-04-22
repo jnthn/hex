@@ -7,7 +7,7 @@ extends 'Repository';
 has 'storage' => (
     is => 'ro',
     isa => 'HashRef[Hex::AggregateRoot]',
-    default => { {} },
+    default => sub { {} },
 );
 
 sub add {
