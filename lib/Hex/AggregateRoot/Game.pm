@@ -26,6 +26,10 @@ has 'player_on_turn' => (
     isa => 'Str',
 );
 
+has 'board' => (
+    is => 'rw'
+);
+
 has 'board_size' => (
     is => 'rw',
     isa => 'Int'
@@ -48,10 +52,18 @@ sub apply_game_started {
     $self->player_black($event->FirstPlayerHandle);
     $self->player_on_turn($event->FirstPlayerHandle);
     $self->player_white($event->SecondPlayerHandle);
+    
+    my @board = map { [] } 1..$event->Size;
+    $self->board(\@board);
 }
 
 sub apply_stone_placed {
     my ($self, $event) = @_;
+    
+    my $board = $self->board();
+    $event->Cell =~ /^([A-Z])(\d+)$/;
+    $board->[ord($1) - ord('A')]->[$2 - 1] = $self->player_on_turn();
+    
     $self->player_on_turn(
         $self->player_on_turn() eq $self->player_black() ?
             $self->player_white() :

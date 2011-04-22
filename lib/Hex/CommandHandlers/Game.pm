@@ -33,6 +33,9 @@ sub handle_place_stone {
     die "Piece outside of board"
         unless piece_is_within_board($command->Cell(), $game->board_size());
     
+    die "Cell is already occupied"
+        if cell_is_taken($command->Cell(), $game->board());
+    
     $game->place_stone($command->PlayerHandle, $command->Cell);
     $self->repository->save($game);
 }
@@ -45,6 +48,12 @@ sub piece_is_within_board {
         return 1;
     }
     return 0;
+}
+
+sub cell_is_taken {
+    my ($target, $board) = @_;
+    $target =~ /^([A-Z])(\d+)$/;
+    return defined($board->[ord($1) - ord('A')]->[$2 - 1]);
 }
 
 1;
