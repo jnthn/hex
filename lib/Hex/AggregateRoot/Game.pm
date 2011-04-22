@@ -1,4 +1,4 @@
-package Hex::AggregateRoots::Game;
+package Hex::AggregateRoot::Game;
 
 use Moose;
 
