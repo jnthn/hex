@@ -40,6 +40,11 @@ has 'colors_swapped' => (
     isa => 'Bool'
 );
 
+has 'finished' => (
+    is => 'rw',
+    isa => 'Bool'
+);
+
 sub lookup {
     my ($self) = @_;
 
@@ -47,6 +52,7 @@ sub lookup {
         'Hex::Event::GameStarted' => \&apply_game_started,
         'Hex::Event::StonePlaced' => \&apply_stone_placed,
         'Hex::Event::PlayerColorsSwapped' => \&apply_swap_player_colors,
+        'Hex::Event::GameResigned' => \&apply_game_resigned,
     };
 }
 
@@ -78,6 +84,12 @@ sub apply_swap_player_colors {
 
     $self->go_to_next_player();
     $self->colors_swapped(1);
+}
+
+sub apply_game_resigned {
+    my ($self, $event) = @_;
+
+    $self->finished(1);
 }
 
 sub go_to_next_player {

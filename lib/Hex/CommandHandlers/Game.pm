@@ -33,6 +33,10 @@ sub handle_place_stone {
     my ($self, $command) = @_;
 
     my $game = $self->repository->get_by_id($command->GameID);
+
+    die "Cannot make a move after the game has ended"
+        if $game->finished;
+
     die "Move out of turn"
         if $game->player_on_turn ne $command->PlayerHandle;
     
