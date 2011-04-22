@@ -12,7 +12,7 @@ TestFixture->new(
         Size => '15',
         PlayerTimeLimit => 'P1h'
     )],
-    when => {
+    when => sub {
         Hex::Command::PlaceStone->new(
             GameID => 42,
             Cell => 'B5'
