@@ -13,7 +13,7 @@ sub subscribe {
 
 # Send a message. Must have exactly one handler.
 sub send {
-    my ($self, $to_publish);
+    my ($self, $to_publish) = @_;
     my $subs = $subscriptions{ref($to_publish)};
     if ($subs && @$subs == 1) {
         $subs->[0]->($to_publish);
@@ -25,7 +25,7 @@ sub send {
 
 # Publish a message. May have zero or more subscribers.
 sub publish {
-    my ($self, $to_publish);
+    my ($self, $to_publish) = @_;
     my $subs = $subscriptions{ref($to_publish)} || [];
     for (@$subs) {
         $_->($to_publish);
