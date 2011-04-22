@@ -16,6 +16,11 @@ has 'player_on_turn' => (
     isa => 'Str',
 );
 
+has 'board_size' => (
+    is => 'rw',
+    isa => 'Int'
+);
+
 sub lookup {
     my ($self) = @_;
 
@@ -29,6 +34,7 @@ sub apply_game_started {
     my ($self, $event) = @_;
 
     $self->id($event->GameID);
+    $self->board_size($event->Size);
     $self->player_on_turn($event->FirstPlayerHandle);
 }
 

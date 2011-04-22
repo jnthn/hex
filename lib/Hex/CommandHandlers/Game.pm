@@ -29,8 +29,20 @@ sub handle_place_stone {
     my $game = $self->repository->get_by_id($command->GameID);
     die "Move out of turn"
         if $game->player_on_turn ne $command->PlayerHandle;
+    
+    die "Piece outside of board"
+        unless piece_is_within_board($command->Cell(), $game->board_size());
+    
     $game->place_stone($command->PlayerHandle, $command->Cell);
     $self->repository->save($game);
+}
+
+sub piece_is_within_board {
+    my ($target, $board_size) = @_;
+    if ($target =~ /^([A-Z])(\d+)$/) {
+        return 1 if $2 <= $board_size;
+    }
+    return 0;
 }
 
 1;
