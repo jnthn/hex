@@ -24,6 +24,13 @@ sub get_by_id {
 }
 
 sub save {
+    # This is a test repository, so we don't want to save
+}
+
+sub reset {
+    my ($self) = @_;
+
+    %{ $self->storage->{$id} } = ();
 }
 
 1;
