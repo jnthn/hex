@@ -1,7 +1,8 @@
-use Test::More tests => 5;
+use Test::More tests => 6;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
+use Hex::Command::SwapPlayerColors;
 use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
 use Hex::AggregateRoot::Game;
@@ -101,4 +102,19 @@ TestFixture->new(
         Cell => 'A1'
     ),
     then => "Cell is already occupied"
+)->run();
+
+TestFixture->new(
+    root => Hex::AggregateRoot::Game->new(),
+    given => [Hex::Event::GameStarted->new(
+        GameID => 42,
+        FirstPlayerHandle => 'jnthn',
+        SecondPlayerHandle => 'masak',
+        Size => '5',
+        PlayerTimeLimit => 'P1h'
+    )],
+    when => Hex::Command::SwapPlayerColors->new(
+        GameID => 42
+    ),
+    then => "Can only swap player colors immediately after the first move"
 )->run();
