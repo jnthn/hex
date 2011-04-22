@@ -7,6 +7,8 @@ use Hex::Event::StonePlaced;
 use Hex::AggregateRoot::Game;
 use Hex::CommandHandlers::Game;
 
+Hex::CommandHandlers::Game::setup(TestFixture->repository());
+
 TestFixture->new(
     root => Hex::AggregateRoot::Game->new(),
     given => [Hex::Event::GameStarted->new(
