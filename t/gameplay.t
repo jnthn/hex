@@ -1,10 +1,11 @@
-use Test::More tests => 6;
+use Test::More tests => 7;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
 use Hex::Command::SwapPlayerColors;
 use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
+use Hex::Event::PlayerColorsSwapped;
 use Hex::AggregateRoot::Game;
 use Hex::CommandHandlers::Game;
 
@@ -114,7 +115,32 @@ TestFixture->new(
         PlayerTimeLimit => 'P1h'
     )],
     when => Hex::Command::SwapPlayerColors->new(
-        GameID => 42
+        GameID => 42,
+        PlayerHandle => 'jnthn',
     ),
     then => "Can only swap player colors immediately after the first move"
+)->run();
+
+TestFixture->new(
+    root => Hex::AggregateRoot::Game->new(),
+    given => [Hex::Event::GameStarted->new(
+        GameID => 42,
+        FirstPlayerHandle => 'jnthn',
+        SecondPlayerHandle => 'masak',
+        Size => '5',
+        PlayerTimeLimit => 'P1h'
+    ),
+    Hex::Event::StonePlaced->new(
+        GameID => 42,
+        PlayerHandle => 'jnthn',
+        Cell => 'B5'
+    )],
+    when => Hex::Command::SwapPlayerColors->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+    ),
+    then => [Hex::Event::PlayerColorsSwapped->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+    )],
 )->run();
