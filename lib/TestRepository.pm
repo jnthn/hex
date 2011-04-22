@@ -6,7 +6,6 @@ extends 'Repository';
 
 has 'storage' => (
     is => 'rw',
-    isa => 'Hex::AggregateRoot',
 );
 
 sub add {
@@ -31,7 +30,7 @@ sub save {
 sub reset {
     my ($self) = @_;
 
-    %{ $self->storage } = ();
+    $self->storage(undef);
     return;
 }
 

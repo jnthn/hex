@@ -17,6 +17,10 @@ sub run {
     my ($self) = @_;
 
     my $root = $self->root();
+    for ($self->repository) {
+        $_->reset;
+        $_->add($root);
+    }
     $root->load_from_history( $self->given() );
     my @events;
     eval {
