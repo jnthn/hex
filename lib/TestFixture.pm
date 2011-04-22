@@ -3,7 +3,7 @@ package TestFixture;
 use Moose;
 
 use Hex::AggregateRoot;
-use Hex::Event;
+use Hex::EventAggregator;
 
 has 'root' => (is => 'ro', isa => 'Hex::AggregateRoot');
 
@@ -18,7 +18,7 @@ sub run {
     $root->load_from_history( $self->given() );
     my @events;
     eval {
-        $self->when()->();
+        Hex::EventAggregator->send( $self->when() );
         @events = $root->get_changes();
     }
     # hm, handle the result here somehow
