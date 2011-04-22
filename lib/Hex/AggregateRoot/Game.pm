@@ -8,14 +8,12 @@ sub lookup {
     my ($self) = @_;
 
     return {
-        'Hex::Event::GameStarted' => \&startGame,
+        'Hex::Event::GameStarted' => \&apply_game_started,
     };
 }
 
-sub startGame {
+sub apply_game_started {
     my ($self) = @_;
-
-    die "OH HAI!";
 }
 
 1;
