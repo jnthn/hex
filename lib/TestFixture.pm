@@ -28,9 +28,12 @@ sub run {
         @events = @{ $root->get_uncommitted_changes() };
     };
     if ($@) {
-        diag($@);
+        my $trimmed_error = substr($@, 0, length $self->then());
+        is $trimmed_error, $self->then();
     }
-    is_deeply(\@events, $self->then());
+    else {
+        is_deeply(\@events, $self->then());
+    }
 }
 
 my $repository = TestRepository->new();
