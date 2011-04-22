@@ -1,4 +1,4 @@
-use Test::More tests => 7;
+use Test::More tests => 8;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
@@ -143,4 +143,30 @@ TestFixture->new(
         GameID => 42,
         PlayerHandle => 'masak',
     )],
+)->run();
+
+TestFixture->new(
+    root => Hex::AggregateRoot::Game->new(),
+    given => [Hex::Event::GameStarted->new(
+        GameID => 42,
+        FirstPlayerHandle => 'jnthn',
+        SecondPlayerHandle => 'masak',
+        Size => '5',
+        PlayerTimeLimit => 'P1h'
+    ),
+    Hex::Event::StonePlaced->new(
+        GameID => 42,
+        PlayerHandle => 'jnthn',
+        Cell => 'B5'
+    ),
+    Hex::Event::PlayerColorsSwapped->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+    )],
+    when => Hex::Command::PlaceStone->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+        Cell => 'A1'
+    ),
+    then => "Move out of turn"
 )->run();
