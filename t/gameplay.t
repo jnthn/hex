@@ -4,6 +4,7 @@ use TestFixture;
 use Hex::Command::PlaceStone;
 use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
+use Hex::AggregateRoots::Game;
 
 TestFixture->new(
     root => Hex::AggregateRoots::Game->new(),
