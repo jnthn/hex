@@ -11,6 +11,11 @@ has 'id' => (
     isa => 'Int',
 );
 
+has 'player_on_turn' => (
+    is  => 'rw',
+    isa => 'Str',
+);
+
 sub lookup {
     my ($self) = @_;
 
@@ -24,6 +29,7 @@ sub apply_game_started {
     my ($self, $event) = @_;
 
     $self->id($event->GameID);
+    $self->player_on_turn($event->FirstPlayerHandle);
 }
 
 sub apply_stone_placed {

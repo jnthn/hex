@@ -27,6 +27,8 @@ sub handle_place_stone {
     my ($self, $command) = @_;
 
     my $game = $self->repository->get_by_id($command->GameID);
+    die "Move out of turn"
+        if $game->player_on_turn ne $command->PlayerHandle;
     $game->place_stone($command->PlayerHandle, $command->Cell);
     $self->repository->save($game);
 }
