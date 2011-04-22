@@ -25,7 +25,7 @@ sub run {
     my @events;
     eval {
         Hex::EventAggregator->send( $self->when() );
-        @events = $root->get_changes();
+        @events = $root->get_uncommitted_changes();
     };
     if ($@) {
         diag($@);
