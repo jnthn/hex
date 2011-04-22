@@ -14,12 +14,10 @@ TestFixture->new(
         Size => '15',
         PlayerTimeLimit => 'P1h'
     )],
-    when => sub {
-        Hex::Command::PlaceStone->new(
-            GameID => 42,
-            Cell => 'B5'
-        )
-    },
+    when => Hex::Command::PlaceStone->new(
+        GameID => 42,
+        Cell => 'B5'
+    ),
     then => [Hex::Event::StonePlaced->new(
         GameID => 42,
         PlayerHandle => 'jnthn',
