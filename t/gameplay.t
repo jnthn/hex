@@ -10,6 +10,7 @@ use Hex::CommandHandlers::Game;
 TestFixture->new(
     root => Hex::AggregateRoot::Game->new(),
     given => [Hex::Event::GameStarted->new(
+        GameID => 42,
         FirstPlayerHandle => 'jnthn',
         SecondPlayerHandle => 'masak',
         Size => '15',
