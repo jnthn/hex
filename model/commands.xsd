@@ -8,7 +8,7 @@
   <xs:element name="RegisterPlayerCommand">
     <xs:complexType>
       <xs:all>
-        <xs:element name="Handle" type="xs:string" />
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="Email" type="xs:string" />
         <xs:element name="Password" type="xs:string" />
       </xs:all>
@@ -26,6 +26,7 @@
   <xs:element name="InvitePlayerCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="InviterHandle" type="xs:string" />
         <xs:element name="InviteeHandle" type="xs:string" />
         <xs:element name="Size" type="xs:int" />
         <xs:element name="PlayerTimeLimit" type="xs:duration" />
@@ -37,6 +38,7 @@
   <xs:element name="AcceptInvitationCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="InvitationID" type="xs:int" />
       </xs:all>
     </xs:complexType>
@@ -45,6 +47,7 @@
   <xs:element name="RejectInvitationCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="InvitationID" type="xs:int" />
       </xs:all>
     </xs:complexType>
@@ -53,6 +56,7 @@
   <xs:element name="PlaceStoneCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="GameID" type="xs:int" />
         <xs:element name="Cell" type="xs:string" />
       </xs:all>
@@ -62,6 +66,7 @@
   <xs:element name="SwapPlayerColorsCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="GameID" type="xs:int" />
       </xs:all>
     </xs:complexType>
@@ -70,6 +75,7 @@
   <xs:element name="ResignGameCommand">
     <xs:complexType>
       <xs:all>
+        <xs:element name="PlayerHandle" type="xs:string" />
         <xs:element name="GameID" type="xs:int" />
       </xs:all>
     </xs:complexType>
