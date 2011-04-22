@@ -30,7 +30,7 @@ sub save {
 sub reset {
     my ($self) = @_;
 
-    %{ $self->storage->{$id} } = ();
+    %{ $self->storage } = ();
 }
 
 1;
