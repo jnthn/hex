@@ -39,6 +39,7 @@
   <xs:element name="GameStartedEvent">
     <xs:complexType>
       <xs:all>
+        <xs:element name="GameID" type="xs:int" />
         <xs:element name="FirstPlayerHandle" type="xs:string" />
         <xs:element name="SecondPlayerHandle" type="xs:string" />
         <xs:element name="Size" type="xs:int" />
