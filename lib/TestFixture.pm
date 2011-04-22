@@ -23,6 +23,9 @@ sub run {
         Hex::EventAggregator->send( $self->when() );
         @events = $root->get_changes();
     };
+    if ($@) {
+        diag($@);
+    }
     is_deeply(\@events, $self->then());
 }
 
