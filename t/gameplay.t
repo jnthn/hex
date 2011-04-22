@@ -1,4 +1,4 @@
-use Test::More tests => 9;
+use Test::More tests => 10;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
@@ -6,6 +6,7 @@ use Hex::Command::SwapPlayerColors;
 use Hex::Event::GameStarted;
 use Hex::Event::StonePlaced;
 use Hex::Event::PlayerColorsSwapped;
+use Hex::Event::GameResigned;
 use Hex::AggregateRoot::Game;
 use Hex::CommandHandlers::Game;
 
@@ -194,4 +195,25 @@ TestFixture->new(
         PlayerHandle => 'jnthn',
     ),
     then => "Can only swap player colors immediately after the first move"
+)->run();
+
+TestFixture->new(
+    root => Hex::AggregateRoot::Game->new(),
+    given => [Hex::Event::GameStarted->new(
+        GameID => 42,
+        FirstPlayerHandle => 'jnthn',
+        SecondPlayerHandle => 'masak',
+        Size => '5',
+        PlayerTimeLimit => 'P1h'
+    ),
+    Hex::Event::GameResigned->new(
+        GameID => 42,
+        PlayerHandle => 'masak',
+    )],
+    when => Hex::Command::PlaceStone->new(
+        GameID => 42,
+        PlayerHandle => 'jnthn',
+        Cell => 'A5'
+    ),
+    then => "Cannot make a move after the game has ended"
 )->run();
