@@ -5,22 +5,23 @@ use Moose;
 extends 'Repository';
 
 has 'storage' => (
-    is => 'ro',
-    isa => 'HashRef[Hex::AggregateRoot]',
-    default => sub { {} },
+    is => 'rw',
+    isa => 'Hex::AggregateRoot',
 );
 
 sub add {
     my ($self, $id, $aggregate) = @_;
 
-    $self->storage->{$id} = $aggregate;
+    $self->storage($aggregate);
 }
 
 sub get_by_id {
     my ($self, $id) = @_;
 
-    $self->storage->{$id}
-        or die "Aggregate with id $id not found";
+    die "Aggregate with id $id not found"
+        unless defined $self->storage();
+
+    return $self->storage();
 }
 
 sub save {
@@ -31,6 +32,7 @@ sub reset {
     my ($self) = @_;
 
     %{ $self->storage } = ();
+    return;
 }
 
 1;
