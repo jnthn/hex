@@ -49,7 +49,23 @@ sub handle_place_stone {
 sub handle_swap_player_colors {
     my ($self, $command) = @_;
 
-    die "Can only swap player colors immediately after the first move";
+    my $game = $self->repository->get_by_id($command->GameID);
+    die "Can only swap player colors immediately after the first move"
+        unless count_moves($game->board()) == 1;
+        
+    $game->swap_player_colors();
+    $self->repository->save($game);
+}
+
+sub count_moves {
+    my $board = shift;
+    my $moves = 0;
+    for (@$board) {
+        for (@$_) {
+            $moves++ if defined($_);
+        }
+    }
+    return $moves;
 }
 
 sub piece_is_within_board {

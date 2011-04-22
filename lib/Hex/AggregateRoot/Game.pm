@@ -41,6 +41,7 @@ sub lookup {
     return {
         'Hex::Event::GameStarted' => \&apply_game_started,
         'Hex::Event::StonePlaced' => \&apply_stone_placed,
+        'Hex::Event::PlayerColorsSwapped' => \&apply_swap_player_colors,
     };
 }
 
@@ -70,6 +71,9 @@ sub apply_stone_placed {
             $self->player_black());
 }
 
+sub apply_swap_player_colors {
+}
+
 sub place_stone {
     my ($self, $player_handle, $cell) = @_;
 
@@ -77,6 +81,15 @@ sub place_stone {
         GameID       => $self->id,
         PlayerHandle => $player_handle,
         Cell         => $cell,
+    ));
+}
+
+sub swap_player_colors {
+    my $self = shift;
+    
+    $self->apply_event(Hex::Event::PlayerColorsSwapped->new(
+        GameID       => $self->id,
+        PlayerHandle => $self->player_on_turn
     ));
 }
 
