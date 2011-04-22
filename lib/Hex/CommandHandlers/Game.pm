@@ -27,7 +27,8 @@ sub handle_place_stone {
     my ($self, $command) = @_;
 
     my $game = $self->repository->get_by_id($command->GameID);
-    $game->place_stone($game, $command->Cell);
+    $game->place_stone($command->Cell);
+    $self->repository->save($game);
 }
 
 1;
