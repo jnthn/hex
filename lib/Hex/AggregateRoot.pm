@@ -28,7 +28,7 @@ sub apply_event {
     my ($self, $event, $add) = @_;
 
     my $handler = $self->lookup()->{ref $event}
-        or return; # original code fails here...
+        or die("Cannot find handler for " . ref($event));
     $handler->($self);
 
     $add //= 1;
