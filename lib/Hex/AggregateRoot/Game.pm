@@ -35,6 +35,11 @@ has 'board_size' => (
     isa => 'Int'
 );
 
+has 'colors_swapped' => (
+    is => 'rw',
+    isa => 'Bool'
+);
+
 sub lookup {
     my ($self) = @_;
 
@@ -72,6 +77,7 @@ sub apply_swap_player_colors {
     my ($self, $event) = @_;
 
     $self->go_to_next_player();
+    $self->colors_swapped(1);
 }
 
 sub go_to_next_player {

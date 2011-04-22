@@ -51,7 +51,7 @@ sub handle_swap_player_colors {
 
     my $game = $self->repository->get_by_id($command->GameID);
     die "Can only swap player colors immediately after the first move"
-        unless count_moves($game->board()) == 1;
+        if $game->colors_swapped || count_moves($game->board()) != 1;
         
     $game->swap_player_colors();
     $self->repository->save($game);
