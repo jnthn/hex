@@ -40,7 +40,9 @@ sub handle_place_stone {
 sub piece_is_within_board {
     my ($target, $board_size) = @_;
     if ($target =~ /^([A-Z])(\d+)$/) {
-        return 1 if $2 <= $board_size;
+        return 0 if ord($1) - ord('A') + 1 > $board_size;
+        return 0 if     $2                 > $board_size;
+        return 1;
     }
     return 0;
 }
