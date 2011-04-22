@@ -11,6 +11,13 @@ has 'storage' => (
 sub add {
     my ($self, $id, $aggregate) = @_;
 
+    die "Must supply an id"
+        unless defined $id;
+    die "Must supply an aggregate"
+        unless defined $aggregate;
+    die "Second argument must be of type AggregateRoot"
+        unless $aggregate->isa('Hex::AggregateRoot');
+
     $self->storage($aggregate);
 }
 
