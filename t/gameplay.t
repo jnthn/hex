@@ -7,7 +7,7 @@ use Hex::Event::StonePlaced;
 use Hex::AggregateRoot::Game;
 
 TestFixture->new(
-    root => Hex::AggregateRoots::Game->new(),
+    root => Hex::AggregateRoot::Game->new(),
     given => [Hex::Event::GameStarted->new(
         FirstPlayerHandle => 'jnthn',
         SecondPlayerHandle => 'masak',
