@@ -22,7 +22,7 @@ sub run {
         Hex::EventAggregator->send( $self->when() );
         @events = $root->get_changes();
     };
-    is_deeply(@events, $self->then());
+    is_deeply(\@events, $self->then());
 }
 
 no Moose;
