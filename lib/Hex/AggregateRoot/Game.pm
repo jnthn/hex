@@ -11,6 +11,16 @@ has 'id' => (
     isa => 'Int',
 );
 
+has 'player_black' => (
+    is  => 'rw',
+    isa => 'Str',
+);
+
+has 'player_white' => (
+    is  => 'rw',
+    isa => 'Str',
+);
+
 has 'player_on_turn' => (
     is  => 'rw',
     isa => 'Str',
@@ -35,11 +45,17 @@ sub apply_game_started {
 
     $self->id($event->GameID);
     $self->board_size($event->Size);
+    $self->player_black($event->FirstPlayerHandle);
     $self->player_on_turn($event->FirstPlayerHandle);
+    $self->player_white($event->SecondPlayerHandle);
 }
 
 sub apply_stone_placed {
-    my ($self) = @_;
+    my ($self, $event) = @_;
+    $self->player_on_turn(
+        $self->player_on_turn() eq $self->player_black() ?
+            $self->player_white() :
+            $self->player_black());
 }
 
 sub place_stone {
