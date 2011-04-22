@@ -1,13 +1,11 @@
-use Test;
+use Test::More tests => 1;
 use lib 'lib';
 use TestFixture;
 use Hex::Command::PlaceStone;
 use Hex::Event::GameStarted;
-use Hex::Event::StonePlacedEvent;
+use Hex::Event::StonePlaced;
 
-plan(1);
-
-AggregateTest->new(
+TestFixture->new(
     given => [Hex::Event::GameStarted->new(
         FirstPlayerHandle => 'jnthn',
         SecondPlayerHandle => 'masak',
@@ -20,7 +18,7 @@ AggregateTest->new(
             Cell => 'B5'
         )
     },
-    then => [Hex::Event::StonePlacedEvent->new(
+    then => [Hex::Event::StonePlaced->new(
         GameID => 42,
         PlayerHandle => 'jnthn',
         Cell => 'B5'
