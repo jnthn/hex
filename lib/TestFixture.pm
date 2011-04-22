@@ -4,7 +4,6 @@ use Moose;
 
 use Hex::AggregateRoot;
 use Hex::Event;
-use Hex::Exception;
 
 has 'root' => (
     is => 'ro',
@@ -23,7 +22,7 @@ has 'when' => (
 
 has 'then' => (
     is => 'ro',
-    isa => 'ArrayRef[Hex::Event]|Hex::Exception',
+    isa => 'ArrayRef[Hex::Event] | Str',
 );
 
 sub run {
