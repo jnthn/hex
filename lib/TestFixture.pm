@@ -1,4 +1,5 @@
 package TestFixture;
+use Test::More;
 
 use Moose;
 
@@ -20,8 +21,8 @@ sub run {
     eval {
         Hex::EventAggregator->send( $self->when() );
         @events = $root->get_changes();
-    }
-    # hm, handle the result here somehow
+    };
+    is_deeply(@events, $self->then());
 }
 
 no Moose;
