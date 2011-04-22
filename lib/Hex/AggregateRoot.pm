@@ -16,8 +16,13 @@ has 'changes' => (
     is => 'rw',
     isa => 'ArrayRef[Event]',
     reader => 'get_uncommitted_changes',
-    clearer => 'mark_changes_as_committed',
 );
+
+sub mark_changes_as_committed {
+    my ($self) = @_;
+
+    @{ $self->changes() } = ();
+}
 
 sub apply_event {
     my ($self, $event, $add) = @_;
