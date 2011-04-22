@@ -20,6 +20,7 @@ TestFixture->new(
     )],
     when => Hex::Command::PlaceStone->new(
         GameID => 42,
+        PlayerHandle => 'jnthn',
         Cell => 'B5'
     ),
     then => [Hex::Event::StonePlaced->new(
