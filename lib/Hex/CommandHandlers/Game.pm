@@ -7,7 +7,7 @@ use Hex::Command::PlaceStone;
 
 has 'repository' => (
     is => 'ro',
-    isa => 'Hex::Repository',
+    isa => 'Repository',
     required => 1,
 );
 
