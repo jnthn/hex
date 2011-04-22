@@ -15,8 +15,11 @@ sub subscribe {
 sub send {
     my ($self, $to_publish);
     my $subs = $subscriptions{ref($to_publish)};
-    if (!$subs || @$subs != 1) {
+    if ($subs && @$subs == 1) {
         $subs->[0]->($to_publish);
+    }
+    else {
+        die "No handler for command " . ref($to_publish);
     }
 }
 
