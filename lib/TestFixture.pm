@@ -2,14 +2,18 @@ package TestFixture;
 
 use Moose;
 
+use Hex::AggregateRoot;
+use Hex::Event;
+use Hex::Exception;
+
 has 'root' => (
     is => 'ro',
-    isa => 'AggregateRoot',
+    isa => 'Hex::AggregateRoot',
 );
 
 has 'given' => (
     is => 'ro',
-    isa => 'ArrayRef[Event]',
+    isa => 'ArrayRef[Hex::Event]',
 );
 
 has 'when' => (
@@ -19,7 +23,7 @@ has 'when' => (
 
 has 'then' => (
     is => 'ro',
-    isa => 'ArrayRef[Event]|Exception',
+    isa => 'ArrayRef[Hex::Event]|Hex::Exception',
 );
 
 sub run {

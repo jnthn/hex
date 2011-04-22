@@ -1,3 +1,0 @@
-package Exception;
-
-1;
